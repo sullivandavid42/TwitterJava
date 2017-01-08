@@ -3,6 +3,7 @@ package com.company;
 import twitter4j.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Twitter_Api {
 
@@ -28,6 +29,20 @@ public class Twitter_Api {
         } catch (TwitterException e) {
             e.printStackTrace();
         }
+    }
 
+    public void GetTimeLine() {
+        Twitter twitter = TwitterFactory.getSingleton();
+        try {
+            List<Status> statuses = twitter.getHomeTimeline();
+            for (Status status : statuses) {
+                System.out.println(status.getUser().getName() + ":" +
+                        status.getText());
+            }
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
     }
 }
+
+
